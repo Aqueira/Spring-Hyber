@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Customer with orders</title>
+</head>
+<body>
+<h1>Customer with orders</h1>
+
+<h2>Customer:</h2>
+<!-- @thymesVar id="customer" type="org.example.DTO.CustomerDTO" -->
+<p th:text="${customer.id()}">ID: </p>
+<p th:text="${customer.username()}">Username: </p>
+<p th:text="${customer.sector()}">Sector: </p>
+<h2>Orders:</h2>
+
+<!-- @thymesVar id="order" type="org.example.DTO.OrderDTO" -->
+<!-- @thymesVar id="orders" type="java.util.List<org.example.DTO.OrderDTO>" -->
+<ul th:each="order: ${orders}">
+	<h3 th:text="${order.id()}">ID: </h3>
+	<li th:text="${order.deliveryTo()}">Deliver to: </li>
+	<!-- @thymesVar id="item" type="org.example.DTO.LineItemDTO" -->
+	<tr th:each="item ${order.items()}">
+		<td th:text="${item.product().name()}">Product: </td>
+		<td th:text="${item.product().price()}">Price: </td>
+		<td th:text="${item.quantity()}">Quantity: </td>
+	</tr>
+</ul>
+
+</body>
+</html>
