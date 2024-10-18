@@ -34,7 +34,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public OrderDTO findById(Integer id) {
+    public OrderDTO get(Integer id) {
         return orderMapper.toDTO(orderRepository.findById(id));
     }
 }
