@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class loggingAspect {
-    private static Logger logger = LoggerFactory.getLogger(loggingAspect.class);
+    private static final Logger logger = LoggerFactory.getLogger(loggingAspect.class);
 
     @Around("within(@org.springframework.web.bind.annotation.RestController *)")
     public Object loggingAround(ProceedingJoinPoint joinPoint) throws Throwable {
