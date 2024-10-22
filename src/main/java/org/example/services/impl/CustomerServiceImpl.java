@@ -31,23 +31,20 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Transactional
     @Override
-    public void delete(Integer Id) {
-        customerRepository.delete(Id);
+    public void delete(Integer id) {
+        customerRepository.delete(id);
     }
 
     @Transactional
     @Override
-    public CustomerDTO get(Integer Id) {
-        return customerMapper.toDTO(customerRepository.findById(Id));
+    public CustomerDTO get(Integer id) {
+        return customerMapper.toDTO(customerRepository.findById(id));
     }
 
     @Transactional
     @Override
     public List<CustomerDTO> getAll() {
-        return customerRepository.findAll()
-            .stream()
-            .map(customerMapper::toDTO)
-            .toList();
+        return customerMapper.toDTOs(customerRepository.findAll());
     }
 
     @Transactional

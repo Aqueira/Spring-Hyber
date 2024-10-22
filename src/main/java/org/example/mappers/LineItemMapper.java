@@ -7,13 +7,7 @@ import org.mapstruct.*;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface LineItemMapper {
-    @Mappings({
-        @Mapping(source = "id", target = "id"),
-        @Mapping(source = "productName", target = "productName"),
-        @Mapping(source = "quantity", target = "quantity"),
-        @Mapping(source = "price", target = "price"),
-        @Mapping(source = "order", target = "orderId", qualifiedByName = "toId")
-    })
+    @Mapping(source = "order", target = "orderId", qualifiedByName = "toId")
     LineItemDTO toDTO(LineItem lineItem);
 
     @Named("toId")

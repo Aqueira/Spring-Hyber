@@ -34,10 +34,10 @@ public class OrderController {
     }
 
     @PostMapping
-    public ResponseEntity<OrderDTO> create(@RequestBody Customer customer,
+    public ResponseEntity<OrderDTO> create(@RequestParam(value = "id") Integer customerId,
                                                 @RequestParam(value = "deliverTo") String deliverTo,
                                                 @RequestBody List<LineItem> lineItems) {
-        return ResponseEntity.ok(orderService.create(customer, deliverTo, lineItems));
+        return ResponseEntity.ok(orderService.create(customerId, deliverTo, lineItems));
     }
 
 }

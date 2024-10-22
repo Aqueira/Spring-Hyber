@@ -16,13 +16,11 @@ public class CustomerRepositoryImpl implements CustomerRepository {
 
     @Override
     public Customer create(String name, String sector) {
-        session.persist(Customer.builder().name(name).sector(sector).build());
-        Customer customer = session.createQuery(
-            "SELECT customer " +
-                "FROM Customer customer " +
-                "ORDER BY id " +
-                "DESC LIMIT 1", Customer.class)
-            .getSingleResult();
+        Customer customer = Customer.builder()
+                .name(name)
+                .sector(sector)
+                .build();
+        session.persist(customer);
         return customer;
     }
 

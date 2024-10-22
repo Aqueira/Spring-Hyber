@@ -7,7 +7,7 @@ import org.example.entities.LineItem;
 import java.util.List;
 
 public interface OrderService {
-    OrderDTO create(Customer customer, String deliver_to, List<LineItem> lineItems);
+    OrderDTO create(Integer customerId, String deliver_to, List<LineItem> lineItems);
     void delete(Integer id);
     OrderDTO get(Integer id);
 }

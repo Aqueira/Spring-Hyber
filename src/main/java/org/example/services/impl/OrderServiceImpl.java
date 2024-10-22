@@ -24,8 +24,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public OrderDTO create(Customer customer, String deliver_to, List<LineItem> lineItems) {
-        return orderMapper.toDTO(orderRepository.create(customer,  deliver_to, lineItems));
+    public OrderDTO create(Integer customerId, String deliver_to, List<LineItem> lineItems) {
+        return orderMapper.toDTO(orderRepository.create(customerId,  deliver_to, lineItems));
     }
 
     @Override

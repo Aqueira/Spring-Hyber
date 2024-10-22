@@ -5,6 +5,7 @@ import org.example.repositories.OrderRepository;
 import org.example.entities.Customer;
 import org.example.entities.LineItem;
 import org.example.entities.Order;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
@@ -17,19 +18,14 @@ public class OrderRepositoryImpl implements OrderRepository {
     private Session session;
 
     @Override
-    public Order create(Customer customer, String deliver_to, List<LineItem> lineItems) {
-        session.persist(
-            Order.builder()
-                .customer(customer)
+    public Order create(Integer customerId, String deliver_to, List<LineItem> lineItems) {
+        Order order = Order.builder()
                 .deliverTo(deliver_to)
-                .build()
-        );
-
-        return session.createQuery(
-            "SELECT order " +
-                "FROM Order order " +
-                "ORDER BY id " +
-                "DESC LIMIT 1", Order.class).getSingleResult();
+                .customer(session.getReference(Customer.class, customerId))
+                .lineItems(lineItems)
+                .build();
+        session.persist(order);
+        return order;
     }
 
     @Override

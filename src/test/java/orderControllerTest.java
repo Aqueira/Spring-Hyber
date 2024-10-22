@@ -39,6 +39,7 @@ public class orderControllerTest {
 
         ResponseEntity<OrderDTO> result = orderController.get(searchId);
         assertNotNull(result);
+        assertEquals(200, result.getStatusCodeValue());
         assertEquals(1, result.getBody().id());
         assertEquals("test", result.getBody().deliverTo());
 

@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface OrderRepository {
-    Order create(Customer customer, String deliver_to, List<LineItem> lineItems);
+    Order create(Integer customerId, String deliver_to, List<LineItem> lineItems);
     void delete(Integer id);
     Order findById(Integer id);
 }
