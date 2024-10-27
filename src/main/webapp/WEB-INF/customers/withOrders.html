@@ -10,7 +10,7 @@
 <h2>Customer:</h2>
 <!-- @thymesVar id="customer" type="org.example.DTO.CustomerDTO" -->
 <p th:text="${customer.id()}">ID: </p>
-<p th:text="${customer.username()}">Username: </p>
+<p th:text="${customer.name()}">Username: </p>
 <p th:text="${customer.sector()}">Sector: </p>
 <h2>Orders:</h2>
 
@@ -18,12 +18,13 @@
 <!-- @thymesVar id="orders" type="java.util.List<org.example.DTO.OrderDTO>" -->
 <ul th:each="order: ${orders}">
 	<h3 th:text="${order.id()}">ID: </h3>
-	<li th:text="${order.deliveryTo()}">Deliver to: </li>
-	<!-- @thymesVar id="item" type="org.example.DTO.LineItemDTO" -->
-	<tr th:each="item ${order.items()}">
-		<td th:text="${item.product().name()}">Product: </td>
-		<td th:text="${item.product().price()}">Price: </td>
-		<td th:text="${item.quantity()}">Quantity: </td>
+	<li th:text="${order.deliverTo()}">Deliver to: </li>
+	<!-- @thymesVar id="lineItem" type="org.example.DTO.LineItemDTO" -->
+	<!-- @thymesVar id="lineItems" type = "java.util.List<org.example.DTO.LineItemDTO>-->
+	<tr th:each="lineItem: ${order.lineItemsDTO()}">
+		<td th:text="${lineItem.productName()}">Product: </td>
+		<td th:text="${lineItem.price()}">Price: </td>
+		<td th:text="${lineItem.quantity()}">Quantity: </td>
 	</tr>
 </ul>
 

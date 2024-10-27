@@ -1,7 +1,7 @@
 package org.example.services.impl;
 
+import jakarta.transaction.Transactional;
 import org.example.DTO.OrderDTO;
-import org.example.entities.Customer;
 import org.example.entities.LineItem;
 
 import org.example.mappers.OrderMapper;
@@ -22,17 +22,19 @@ public class OrderServiceImpl implements OrderService {
         this.orderRepository = orderRepository;
         this.orderMapper = orderMapper;
     }
-
+    @Transactional
     @Override
     public OrderDTO create(Integer customerId, String deliver_to, List<LineItem> lineItems) {
         return orderMapper.toDTO(orderRepository.create(customerId,  deliver_to, lineItems));
     }
 
+    @Transactional
     @Override
     public void delete(Integer id) {
         orderRepository.delete(id);
     }
 
+    @Transactional
     @Override
     public OrderDTO get(Integer id) {
         return orderMapper.toDTO(orderRepository.findById(id));

@@ -5,11 +5,11 @@ import org.example.repositories.OrderRepository;
 import org.example.entities.Customer;
 import org.example.entities.LineItem;
 import org.example.entities.Order;
-import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+
 
 
 @Repository
@@ -24,6 +24,7 @@ public class OrderRepositoryImpl implements OrderRepository {
                 .customer(session.getReference(Customer.class, customerId))
                 .lineItems(lineItems)
                 .build();
+        order.getLineItems().forEach(value -> value.setOrder(order));
         session.persist(order);
         return order;
     }
