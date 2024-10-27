@@ -28,4 +28,9 @@ public class Order {
     @EqualsAndHashCode.Exclude
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
     private List<LineItem> lineItems;
+
+    public void setLineItems(List<LineItem> lineItems) {
+        lineItems.forEach(value -> value.setOrder(this));
+        this.lineItems = lineItems;
+    }
 }

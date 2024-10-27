@@ -24,7 +24,7 @@ public class OrderRepositoryImpl implements OrderRepository {
                 .customer(session.getReference(Customer.class, customerId))
                 .lineItems(lineItems)
                 .build();
-        order.getLineItems().forEach(value -> value.setOrder(order));
+        order.setLineItems(lineItems);
         session.persist(order);
         return order;
     }
